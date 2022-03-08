@@ -55,7 +55,9 @@ class SpatialConvOrderK(nn.Module):
         if (type(support) is not list):
             support = [support]
         for a in support:
-            x1 = torch.einsum('ncvl,wv->ncwl', (x, a)).contiguous()
+            x1 = torch.einsum('ncvl,wv->ncwl', (x, a)).contiguous()##https://zhuanlan.zhihu.com/p/44954540 einsum语法糖
+            #https://pic4.zhimg.com/80/v2-b79a0ce7e0751c2d7ec3df26f4d3b263_1440w.jpg
+            # _ncwl=\sum_v {_ncvl}\dot{_wv} 对x，a两个矩阵运算
             out.append(x1)
             for k in range(2, self.order + 1):
                 x2 = torch.einsum('ncvl,wv->ncwl', (x1, a)).contiguous()

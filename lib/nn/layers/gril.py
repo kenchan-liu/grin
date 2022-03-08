@@ -96,7 +96,7 @@ class GRIL(nn.Module):
                                               support_len=2,
                                               order=decoder_order,
                                               attention_block=global_att)
-
+        #def __init__(self, d_in, d_model, d_out, support_len, order=1, attention_block=False, nheads=2, dropout=0.):
         # Hidden state initialization embedding
         if n_nodes is not None:
             self.h0 = self.init_hidden_states(n_nodes)
